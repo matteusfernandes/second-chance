@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Vector2 _direction;
 
+    public Vector2 direction {
+        get { return _direction; }
+        set { _direction = value; }
+    }
+
     private void Start() {
         rig = GetComponent<Rigidbody2D>();
     }
