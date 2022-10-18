@@ -8,9 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float runSpeed;
 
     private Rigidbody2D rig;
-    private Vector2 _direction;
     private bool _isRunning;
+    private bool _isRolling;
     private float initialSpeed;
+    private Vector2 _direction;
 
     public Vector2 direction {
         get { return _direction; }
@@ -22,6 +23,11 @@ public class Player : MonoBehaviour
         set { _isRunning = value; }
     }
 
+    public bool isRolling {
+        get { return _isRolling; }
+        set { _isRolling = value; }
+    }
+
     private void Start() {
         rig = GetComponent<Rigidbody2D>();
         initialSpeed = speed;
@@ -30,6 +36,7 @@ public class Player : MonoBehaviour
     private void Update() {
         OnInput();
         OnRun();
+        OnRolling();
     }
 
     private void FixedUpdate() {
@@ -55,6 +62,16 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
             speed = initialSpeed;
             _isRunning = false;
+        }
+    }
+
+    void OnRolling() {
+        if (Input.GetMouseButtonDown(1)) {
+            _isRolling = true;
+        }
+
+        if (Input.GetMouseButtonUp(1)) {
+            _isRolling = false;
         }
     }
 
