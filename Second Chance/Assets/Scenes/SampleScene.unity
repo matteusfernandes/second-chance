@@ -21966,6 +21966,7 @@ GameObject:
   - component: {fileID: 2048299139}
   - component: {fileID: 2048299142}
   - component: {fileID: 2048299141}
+  - component: {fileID: 2048299143}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -22087,3 +22088,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.72604144, y: 1.1121714}
   m_EdgeRadius: 0
+--- !u!114 &2048299143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048299138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043d3ab536f6fb545b6ec9d15f8f5e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
