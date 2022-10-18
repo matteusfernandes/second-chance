@@ -18,6 +18,7 @@ public class PlayerAnim : MonoBehaviour
     void Update()
     {
         OnMove();
+        OnRun();
     }
 
     #region Movement
@@ -35,6 +36,12 @@ public class PlayerAnim : MonoBehaviour
 
         if (player.direction.x < 0) {
             transform.eulerAngles = new Vector2(0, 180);
+        }
+    }
+
+    void OnRun() {
+        if (player.isRunning) {
+            anim.SetInteger("transition", 2);
         }
     }
 
