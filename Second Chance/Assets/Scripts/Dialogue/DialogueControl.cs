@@ -24,11 +24,15 @@ public class DialogueControl : MonoBehaviour
     [Header("Settings")]
     public float typingSpeed;
 
-    private bool isShowing;
+    private bool _isShowing;
     private int index;
     private string[] sentences;
 
     public static DialogueControl instance;
+    public bool isShowing {
+        get { return _isShowing; }
+        set { _isShowing = value; }
+    }
 
     private void Awake()
     {
@@ -60,19 +64,19 @@ public class DialogueControl : MonoBehaviour
                 index = 0;
                 dialogueObj.SetActive(false);
                 sentences = null;
-                isShowing = false;
+                _isShowing = false;
             }
         }
     }
 
     public void Speech(string[] txt)
     {
-        if (!isShowing)
+        if (!_isShowing)
         {
             dialogueObj.SetActive(true);
             sentences = txt;
             StartCoroutine(TypeSentence());
-            isShowing = true;
+            _isShowing = true;
         }
     }
 }
