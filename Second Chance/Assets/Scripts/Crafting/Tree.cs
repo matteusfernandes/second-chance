@@ -8,12 +8,14 @@ public class Tree : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject woodPrefab;
     [SerializeField] private int totalWood;
+    [SerializeField] private ParticleSystem leafs;
 
     public void OnHit()
     {
         treeHealth--;
 
         anim.SetTrigger("isHit");
+        leafs.Play();
 
         if (treeHealth <= 0)
         {
