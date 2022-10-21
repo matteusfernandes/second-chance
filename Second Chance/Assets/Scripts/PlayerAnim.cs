@@ -20,6 +20,7 @@ public class PlayerAnim : MonoBehaviour
         OnMove();
         OnRun();
         OnCutting();
+        OnDigging();
     }
 
     #region Movement
@@ -53,6 +54,12 @@ public class PlayerAnim : MonoBehaviour
     void OnCutting() {
         if (player.isCutting) {
             anim.SetInteger("transition", 3);
+        }
+    }
+
+    void OnDigging() {
+        if (player.isDigging) {
+            anim.SetInteger("transition", 4);
         }
     }
 
