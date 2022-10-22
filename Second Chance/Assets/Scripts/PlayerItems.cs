@@ -6,12 +6,18 @@ public class PlayerItems : MonoBehaviour
 {
     [SerializeField] private int totalWood;
     [SerializeField] private float currentWater;
+    [SerializeField] private int totalCarrots;
 
     private float waterLimit = 50;
 
     public int TotalWood {
         get { return totalWood; }
         set { totalWood = value; }
+    }
+
+    public int TotalCarrots {
+        get { return totalCarrots; }
+        set { totalCarrots = value; }
     }
 
     public float TotalWater {
