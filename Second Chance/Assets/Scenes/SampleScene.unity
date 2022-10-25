@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3326,7 +3326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5288,7 +5288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5360,6 +5360,12 @@ MonoBehaviour:
   waterUIBar: {fileID: 1498526614}
   woodUIBar: {fileID: 1372021742}
   carrotUIBar: {fileID: 1463425032}
+  toolsUI:
+  - {fileID: 317977063}
+  - {fileID: 950191995}
+  - {fileID: 245466540}
+  selectColor: {r: 1, g: 1, b: 1, a: 1}
+  alphaColor: {r: 1, g: 1, b: 1, a: 0.49019608}
 --- !u!1 &982569853
 GameObject:
   m_ObjectHideFlags: 0
@@ -26053,11 +26059,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWood: 0
-  currentWater: 0
   currentCarrots: 0
+  currentWater: 0
   waterLimit: 50
-  woodLimit: 6
   carrotLimit: 10
+  woodLimit: 6
 --- !u!1 &2062770134
 GameObject:
   m_ObjectHideFlags: 0

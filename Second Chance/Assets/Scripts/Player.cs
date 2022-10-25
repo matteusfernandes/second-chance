@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private bool _isWatering;
     private float initialSpeed;
     private Vector2 _direction;
-    private int handlingObj;
+    private int _handlingObj;
     private PlayerItems playerItems;
 
     public Vector2 direction {
@@ -26,6 +26,12 @@ public class Player : MonoBehaviour
     public bool isRunning {
         get { return _isRunning; }
         set { _isRunning = value; }
+    }
+
+    public int handlingObj
+    {
+        get { return _handlingObj; }
+        set { _handlingObj = value; }
     }
 
     public bool isRolling {
@@ -57,17 +63,17 @@ public class Player : MonoBehaviour
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            handlingObj = 1;
+            _handlingObj = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            handlingObj = 2;
+            _handlingObj = 1;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            handlingObj = 3;
+            _handlingObj = 2;
         }
     
         OnInput();
@@ -116,7 +122,7 @@ public class Player : MonoBehaviour
 
     void OnCutting()
     {
-        if (handlingObj == 1)
+        if (_handlingObj == 0)
         {
             if (Input.GetMouseButtonDown(0)) {
                 _isCutting = true;
@@ -132,7 +138,7 @@ public class Player : MonoBehaviour
 
     void OnDigging()
     {
-        if (handlingObj == 2)
+        if (_handlingObj == 1)
         {
             if (Input.GetMouseButtonDown(0)) {
                 _isDigging = true;
@@ -148,7 +154,7 @@ public class Player : MonoBehaviour
 
     void OnWatering()
     {
-        if (handlingObj == 3)
+        if (_handlingObj == 2)
         {
             if (Input.GetMouseButtonDown(0) && playerItems.currentWater > 0) {
                 _isWatering = true;
