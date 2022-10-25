@@ -23,11 +23,10 @@ public class HUDController : MonoBehaviour
         carrotUIBar.fillAmount = 0f;
     }
 
-
     void Update()
     {
-        waterUIBar.fillAmount = playerItems.TotalWater / playerItems.limitOfWater;
-        woodUIBar.fillAmount = playerItems.TotalWood / playerItems.limitOfWood;
-        waterUIBar.fillAmount = playerItems.TotalCarrots / playerItems.limitOfCarrot;
+        waterUIBar.fillAmount = playerItems.currentWater / playerItems.waterLimit;
+        woodUIBar.fillAmount = playerItems.currentWood / playerItems.woodLimit;
+        carrotUIBar.fillAmount = playerItems.currentCarrots / playerItems.carrotLimit;
     }
 }

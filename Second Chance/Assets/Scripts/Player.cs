@@ -150,19 +150,19 @@ public class Player : MonoBehaviour
     {
         if (handlingObj == 3)
         {
-            if (Input.GetMouseButtonDown(0) && playerItems.TotalWater > 0) {
+            if (Input.GetMouseButtonDown(0) && playerItems.currentWater > 0) {
                 _isWatering = true;
                 speed = 0;
             }
 
-            if (Input.GetMouseButtonUp(0) || playerItems.TotalWater <= 0) {
+            if (Input.GetMouseButtonUp(0) || playerItems.currentWater <= 0) {
                 _isWatering = false;
                 speed = initialSpeed;
             }
 
             if (_isWatering)
             {
-                playerItems.TotalWater -= 0.01f;
+                playerItems.currentWater -= 0.01f;
             }
         }
     }
