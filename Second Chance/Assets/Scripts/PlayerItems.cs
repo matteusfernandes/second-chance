@@ -4,25 +4,44 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour
 {
-    [SerializeField] private int totalWood;
+    [Header("Amounts")]
+    [SerializeField] private int currentWood;
     [SerializeField] private float currentWater;
-    [SerializeField] private int totalCarrots;
+    [SerializeField] private int currentCarrots;
 
-    private float waterLimit = 50;
+    [Header("Limits")]
+    [SerializeField] private float waterLimit = 50;
+    [SerializeField] private int woodLimit = 5;
+    [SerializeField] private int carrotLimit = 10;
 
     public int TotalWood {
-        get { return totalWood; }
-        set { totalWood = value; }
+        get { return currentWood; }
+        set { currentWood = value; }
     }
 
     public int TotalCarrots {
-        get { return totalCarrots; }
-        set { totalCarrots = value; }
+        get { return currentCarrots; }
+        set { currentCarrots = value; }
     }
 
     public float TotalWater {
-        get { return currentWater; }
-        set { currentWater = value; }
+        get => currentWater;
+        set => currentWater = value;
+    }
+
+    public float limitOfWater {
+        get { return waterLimit; }
+        set { waterLimit = value; }
+    }
+
+    public int limitOfWood {
+        get { return woodLimit; }
+        set { woodLimit = value; }
+    }
+
+    public int limitOfCarrot {
+        get { return carrotLimit; }
+        set { carrotLimit = value; }
     }
 
     public void WaterLimit (float water)
@@ -30,6 +49,22 @@ public class PlayerItems : MonoBehaviour
         if (currentWater <= waterLimit)
         {
             currentWater += water;
+        }
+    }
+
+    public void WoodLimit (int wood)
+    {
+        if (currentWood <= woodLimit)
+        {
+            currentWood += wood;
+        }
+    }
+
+    public void CarrotLimit (int carrot)
+    {
+        if (currentCarrots <= carrotLimit)
+        {
+            currentCarrots += carrot;
         }
     }
 }

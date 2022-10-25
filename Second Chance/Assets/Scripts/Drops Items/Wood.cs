@@ -23,7 +23,7 @@ public class Wood : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerItems>().TotalWood++;
+            collision.GetComponent<PlayerItems>().WoodLimit(1);
             Destroy(gameObject);
         }
     }

@@ -5322,6 +5322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 956857727}
+  - component: {fileID: 956857728}
   m_Layer: 0
   m_Name: HUD_Controller
   m_TagString: Untagged
@@ -5344,6 +5345,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &956857728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956857726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b046f233b8a8d3a4089c0a5c3b5659b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterUIBar: {fileID: 1498526614}
+  woodUIBar: {fileID: 1372021742}
+  carrotUIBar: {fileID: 1463425032}
 --- !u!1 &982569853
 GameObject:
   m_ObjectHideFlags: 0
@@ -7800,7 +7816,7 @@ GameObject:
   - component: {fileID: 1372021743}
   - component: {fileID: 1372021742}
   m_Layer: 5
-  m_Name: Image
+  m_Name: woodBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7851,7 +7867,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -8029,7 +8045,7 @@ GameObject:
   - component: {fileID: 1463425033}
   - component: {fileID: 1463425032}
   m_Layer: 5
-  m_Name: Image
+  m_Name: carrotBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8080,7 +8096,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -8182,7 +8198,7 @@ GameObject:
   - component: {fileID: 1498526615}
   - component: {fileID: 1498526614}
   m_Layer: 5
-  m_Name: Image
+  m_Name: waterBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8233,7 +8249,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -26036,9 +26052,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76d6623a7af11241aaa7eceb3ebd21a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalWood: 0
+  currentWood: 0
   currentWater: 0
-  totalCarrots: 0
+  currentCarrots: 0
+  waterLimit: 50
+  woodLimit: 6
+  carrotLimit: 10
 --- !u!1 &2062770134
 GameObject:
   m_ObjectHideFlags: 0

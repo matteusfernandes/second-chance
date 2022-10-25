@@ -65,7 +65,7 @@ public class SlotFarm : MonoBehaviour
         if (grownUp)
         {
             Debug.Log("colheu");
-            playerItems.TotalCarrots ++;
+            playerItems.CarrotLimit(1);
             spriteRenderer.sprite = defaultSprite;
             currentWater = 0f;
             initialDigAmount = digAmount;
