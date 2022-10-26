@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     private Vector2 _direction;
     private int _handlingObj;
     private PlayerItems playerItems;
+    private bool _isPaused;
 
     public Vector2 direction {
         get { return _direction; }
@@ -54,6 +56,11 @@ public class Player : MonoBehaviour
         set { _isWatering = value; }
     }
 
+    public bool isPaused {
+        get { return _isPaused; }
+        set { _isPaused = value; }
+    }
+
     private void Start() {
         rig = GetComponent<Rigidbody2D>();
         initialSpeed = speed;
@@ -61,31 +68,37 @@ public class Player : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (!_isPaused)
         {
-            _handlingObj = 0;
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _handlingObj = 0;
+            }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            _handlingObj = 1;
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                _handlingObj = 1;
+            }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            _handlingObj = 2;
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                _handlingObj = 2;
+            }
+        
+            OnInput();
+            OnRun();
+            OnRolling();
+            OnCutting();
+            OnDigging();
+            OnWatering();
         }
-    
-        OnInput();
-        OnRun();
-        OnRolling();
-        OnCutting();
-        OnDigging();
-        OnWatering();
     }
 
     private void FixedUpdate() {
-        OnMove();
+        if (!_isPaused)
+        {
+            OnMove();
+        }
     }
 
     #region Movement
