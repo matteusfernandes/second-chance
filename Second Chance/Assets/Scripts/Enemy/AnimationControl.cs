@@ -10,11 +10,13 @@ public class AnimationControl : MonoBehaviour
 
     private Animator anim;
     private PlayerAnim playerAnim;
+    private Skeleton skeleton;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         playerAnim = FindObjectOfType<PlayerAnim>();
+        skeleton = GetComponentInParent<Skeleton>();
     }
 
     public void PlayAnim(int value)
@@ -24,14 +26,31 @@ public class AnimationControl : MonoBehaviour
 
     public void Attack()
     {
-        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, playerLayer);
-
-        if (hit != null)
+        if (!skeleton.isDead)
         {
-            playerAnim.OnHit();
+            Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, playerLayer);
+
+            if (hit != null)
+            {
+                playerAnim.OnHit();
+            }
+        }
+    }
+
+    public void OnHit()
+    {
+        if (skeleton.currentHealth <= 0)
+        {
+            skeleton.isDead = true;
+            anim.SetTrigger("death");
+            Destroy(skeleton.gameObject, 1f);
         }
         else
-        {}
+        {
+            anim.SetTrigger("hit");
+            skeleton.currentHealth--;
+            skeleton.healthBar.fillAmount = skeleton.currentHealth / skeleton.totalHealth;
+        }
     }
 
     private void OnDrawGizmosSelected()

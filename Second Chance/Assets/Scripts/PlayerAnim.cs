@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour
 {
+    [Header("Attack Settings")]
     [SerializeField] private float recoveryTime = 1f;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float radius;
+    [SerializeField] LayerMask enemyLayer;
 
     private Player player;
     private Animator anim;
@@ -12,7 +16,6 @@ public class PlayerAnim : MonoBehaviour
     private bool isHitting;
     private float timeCount;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Player>();
@@ -20,7 +23,6 @@ public class PlayerAnim : MonoBehaviour
         cast = FindObjectOfType<Casting>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         OnMove();
@@ -28,6 +30,7 @@ public class PlayerAnim : MonoBehaviour
         OnCutting();
         OnDigging();
         OnWatering();
+        OnAttacking();
 
         if (isHitting)
         {
@@ -117,6 +120,31 @@ public class PlayerAnim : MonoBehaviour
             anim.SetTrigger("hit");
             isHitting = true;
         }
+    }
+    
+    void OnAttacking() {
+        if (player.isAttacking) {
+            anim.SetInteger("transition", 6);
+        }
+    }
+    
+    #endregion
+
+    #region Attack
+
+    public void OnAttack()
+    {
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, enemyLayer);
+
+        if (hit != null)
+        {
+            hit.GetComponentInChildren<AnimationControl>().OnHit();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPoint.position, radius);
     }
 
     #endregion
