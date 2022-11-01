@@ -11,11 +11,13 @@ public class AnimationControl : MonoBehaviour
     private Animator anim;
     private PlayerAnim playerAnim;
     private Skeleton skeleton;
+    private Player player;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         playerAnim = FindObjectOfType<PlayerAnim>();
+        player = FindObjectOfType<Player>();
         skeleton = GetComponentInParent<Skeleton>();
     }
 
@@ -30,7 +32,7 @@ public class AnimationControl : MonoBehaviour
         {
             Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, radius, playerLayer);
 
-            if (hit != null)
+            if (hit != null && !player.isDead)
             {
                 playerAnim.OnHit();
             }

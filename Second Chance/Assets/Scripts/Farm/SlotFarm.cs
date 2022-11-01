@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SlotFarm : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip holeSFX;
+    [SerializeField] private AudioClip carrotSFX;
+
     [Header("Components")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite hole;
@@ -19,6 +24,7 @@ public class SlotFarm : MonoBehaviour
     private float currentWater;
     private bool holeDug;
     private bool grownUp;
+    private bool plantedCarrot;
 
     PlayerItems playerItems;
 
@@ -37,10 +43,12 @@ public class SlotFarm : MonoBehaviour
                 currentWater += 0.01f;
             }
 
-            if (currentWater >= waterAmount)
+            if (currentWater >= waterAmount && !plantedCarrot)
             {
+                audioSource.PlayOneShot(holeSFX);
                 spriteRenderer.sprite = carrot;
                 grownUp = true;
+                plantedCarrot = true;
             }
         }
     }
@@ -58,13 +66,9 @@ public class SlotFarm : MonoBehaviour
 
     public void OnHarvesting()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (grownUp && plantedCarrot)
         {
-            Debug.Log("apertou E");
-        }
-        if (grownUp)
-        {
-            Debug.Log("colheu");
+            audioSource.PlayOneShot(carrotSFX);
             playerItems.currentCarrots++;
             spriteRenderer.sprite = defaultSprite;
             currentWater = 0f;
@@ -87,8 +91,9 @@ public class SlotFarm : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            if (grownUp)
+            if (grownUp && plantedCarrot)
             {
+                audioSource.PlayOneShot(carrotSFX);
                 playerItems.currentCarrots ++;
                 spriteRenderer.sprite = defaultSprite;
                 currentWater = 0f;

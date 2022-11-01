@@ -32,7 +32,7 @@ public class Skeleton : MonoBehaviour
         {
             agent.SetDestination(player.transform.position);
 
-            if (Vector2.Distance(transform.position, player.transform.position) <= agent.stoppingDistance)
+            if (Vector2.Distance(transform.position, player.transform.position) <= agent.stoppingDistance && !player.isDead)
             {
                 animControl.PlayAnim(2);
             }

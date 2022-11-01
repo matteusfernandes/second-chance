@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-
     [SerializeField] private float speed;
     [SerializeField] private float runSpeed;
+
+    [Header("Stats")]
+    public float totalHealth;
+    public float currentHealth;
+    public Image healthBar;
 
     private Rigidbody2D rig;
     private bool _isRunning;
@@ -20,6 +25,8 @@ public class Player : MonoBehaviour
     private int _handlingObj;
     private PlayerItems playerItems;
     private bool _isPaused;
+
+    public bool isDead;
 
     public Vector2 direction {
         get { return _direction; }
@@ -71,38 +78,46 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         initialSpeed = speed;
         playerItems = GetComponent<PlayerItems>();
+        currentHealth = totalHealth;
     }
 
     private void Update() {
-        if (!_isPaused)
+        if (!isDead)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (!_isPaused)
             {
-                _handlingObj = 0;
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    _handlingObj = 0;
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                _handlingObj = 1;
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    _handlingObj = 1;
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                _handlingObj = 2;
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    _handlingObj = 2;
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                _handlingObj = 3;
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    _handlingObj = 3;
+                }
+            
+                OnInput();
+                OnRun();
+                OnRolling();
+                OnCutting();
+                OnDigging();
+                OnWatering();
+                OnAttacking();
             }
-        
-            OnInput();
-            OnRun();
-            OnRolling();
-            OnCutting();
-            OnDigging();
-            OnWatering();
-            OnAttacking();
+        }
+        else
+        {
+            speed = 0;
         }
     }
 
@@ -110,6 +125,7 @@ public class Player : MonoBehaviour
         if (!_isPaused)
         {
             OnMove();
+            speed = initialSpeed;
         }
     }
 

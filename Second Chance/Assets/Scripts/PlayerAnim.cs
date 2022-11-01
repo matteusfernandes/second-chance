@@ -10,6 +10,7 @@ public class PlayerAnim : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] LayerMask enemyLayer;
 
+    [SerializeField] private float spawnTime = 29f;
     private Player player;
     private Animator anim;
     private Casting cast;
@@ -43,6 +44,16 @@ public class PlayerAnim : MonoBehaviour
             }
         }
 
+        if (player.isDead)
+        {
+            timeCount += Time.deltaTime;
+
+            if (timeCount >= spawnTime)
+            {
+                player.isDead = false;
+                player.currentHealth = player.totalHealth;
+            }
+        }
     }
 
     #region Movement
@@ -115,10 +126,20 @@ public class PlayerAnim : MonoBehaviour
 
     public void OnHit()
     {
-        if (!isHitting)
+        if (player.currentHealth <= 0)
         {
-            anim.SetTrigger("hit");
-            isHitting = true;
+            player.isDead = true;
+            anim.SetTrigger("death");
+        }
+        else
+        {
+            if (!isHitting)
+            {
+                anim.SetTrigger("hit");
+                isHitting = true;
+                player.currentHealth--;
+                player.healthBar.fillAmount = player.currentHealth / player.totalHealth;
+            }
         }
     }
     
